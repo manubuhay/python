@@ -19,11 +19,11 @@ def main():
 	else:
 		num1 = int(input("Gae kog numero: "))
 		num2 = int(input("Gae kog ikaduha na numero: "))
-		if(question == '-' or question == "minusan"):
+		if(question == '-'):
 			print(subtract(num1, num2))
-		elif(question == '*' or question == "padaghanon"):
+		elif(question == '*'):
 			print(multiply(num1, num2))
-		elif(question == '/' or question == "tungaon"):
+		elif(question == '/'):
 			print(divide(num1, num2))
 		else:
 			print(add(num1, num2))
