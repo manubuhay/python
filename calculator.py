@@ -1,12 +1,17 @@
+#Adds numbers
 def add(a, b):
 	return a + b
+#Subtracts numbers
 def subtract(a, b):
 	return a - b
+#Multiplies numbers
 def multiply(x, y):
 	return x * y
+#Divides numbers
 def divide(x, y):
 	return x / y
 
+#Main function
 def main():
 	question = input("Bisaya ni na calculator, unsa imong ginahan buhaton?")
 	if(question == '+' or question == "dugangan"):
