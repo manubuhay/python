@@ -7,7 +7,7 @@ def myfunction():
 	if( famName == "Buhay" or famName == "buhay"):
 		print("True")
 	else:
-		print("You are gay")
+		print("False")
 
 	print("\n")
 	print("Bye")
