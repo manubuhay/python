@@ -8,30 +8,23 @@ def divide(x, y):
 	return x / y
 
 def main():
-	question = input("What do you want to do?")
-	if(question == '+' or question == "add"):
-		num1 = int(input("Enter 1st number: "))
-		num2 = int(input("Enter 2nd number: "))
-		result = add(num1, num2)
-		print(result)
-	elif(question == '-' or question == "subtract"):
-		num1 = int(input("Enter 1st number: "))
-		num2 = int(input("Enter 2nd number: "))
-		subtract(num1, num2)
-		result = subtract(num1, num2)
-		print(result)
-	elif(question == '*' or question == "multiply"):
-		num1 = int(input("Enter 1st number: "))
-		num2 = int(input("Enter 2nd number: "))
-		multiply(num1, num2)
-		result = multiply(num1, num2)
-		print(result)
-	elif(question == '/' or question == "divide"):
-		num1 = int(input("Enter 1st number: "))
-		num2 = int(input("Enter 2nd number: "))
-		divide(num1, num2)
-		result = divide(num1, num2)
-		print(result)
+	question = input("Bisaya ni na calculator, unsa imong ginahan buhaton?")
+	if(question == '+' or question == "dugangan"):
+		num1 = int(input("Gae kog numero: "))
+		num2 = int(input("Gae kog ikaduha na numero: "))
+		print(add(num1, num2))
+	elif(question == '-' or question == "minusan"):
+		num1 = int(input("Gae kog numero: "))
+		num2 = int(input("Gae kog ikaduha na numero: "))
+		print(subtract(num1, num2))
+	elif(question == '*' or question == "padaghanon"):
+		num1 = int(input("Gae kog numero: "))
+		num2 = int(input("Gae kog ikaduha na numero: "))
+		print(multiply(num1, num2))
+	elif(question == '/' or question == "tungaon"):
+		num1 = int(input("Gae kog numero: "))
+		num2 = int(input("Gae kog ikaduha na numero: "))
+		print(divide(num1, num2))
 	else:
-		print("Please enter a valid operation, you fool.")
+		print("Pagtarung oi.")
 main()
