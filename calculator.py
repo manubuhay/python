@@ -13,12 +13,12 @@ def divide(x, y):
 
 #Main function
 def main():
-	question = input("Bisaya ni na calculator, unsa imong ginahan buhaton (+,-,*,/) ?")
+	question = input("Calculator written in Python, choose your action (+,-,*,/) ?")
 	if(question != '+' and question != '-' and question != '*' and question != '/'):
 		print("Pagtarung oi.")
 	else:
-		num1 = int(input("Gae kog numero: "))
-		num2 = int(input("Gae kog ikaduha na numero: "))
+		num1 = int(input("Enter 1st number: "))
+		num2 = int(input("Enter 2nd number: "))
 		if(question == '-'):
 			print(subtract(num1, num2))
 		elif(question == '*'):
