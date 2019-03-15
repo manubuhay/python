@@ -15,7 +15,7 @@ def divide(x, y):
 def main():
 	question = input("Calculator written in Python, choose your action (+,-,*,/) ?")
 	if(question != '+' and question != '-' and question != '*' and question != '/'):
-		print("Pagtarung oi.")
+		print("Invalid Operation!")
 	else:
 		num1 = int(input("Enter 1st number: "))
 		num2 = int(input("Enter 2nd number: "))
