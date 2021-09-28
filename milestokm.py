@@ -1,0 +1,8 @@
+def mtokm():
+	miles = int(input("Input miles: "))
+	km = 1.6 * miles
+	print("Converted into miles is: ")
+	print(km)
+#def main():
+mtokm()
+#main()
