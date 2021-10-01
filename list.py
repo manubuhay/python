@@ -4,7 +4,7 @@ y = []
 
 max = input("How many values?")
 for i in range(0,max):
-    input1 = raw_input("Input values now: ")
+    input1 = raw_input(str(i+1) + ".) " + "Input values now: ")
     y.append(input1)
-    #y.append(i) = input("Input values now: ")
+    #y.append(i) = input("Input values now: ") #Cannot assign value to function, use variables instead
 print(y)
