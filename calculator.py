@@ -13,7 +13,7 @@ def divide(x, y):
 
 #Main function
 def main():
-	question = raw_input("Calculator written in Python, choose your action (+,-,*,/) ?")
+	question = input("Calculator written in Python, choose your action (+,-,*,/) ?")
 	if(question != '+' and question != '-' and question != '*' and question != '/'):
 		print("Invalid Operation!")
 	else:

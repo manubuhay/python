@@ -14,8 +14,8 @@ for i in d:
 
 
 #Input and output values into a dictionary
-index = raw_input("Input index: ")
-kypr = raw_input("Input keypair: ")
+index = input("Input index: ")
+kypr = input("Input keypair: ")
 e = {index: kypr}
 print("Index and keypair is: ")
 print(e)

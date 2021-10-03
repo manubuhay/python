@@ -34,5 +34,3 @@ r2 = Robot("Jerry", "Blue", 120)
 
 r1.introduce_self()
 r2.introduce_self()
-
-

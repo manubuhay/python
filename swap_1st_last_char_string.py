@@ -7,7 +7,7 @@ def front_back(str):
     return swapped
   return str
 
-string = raw_input("Input string: ")
+string = input("Input string: ")
 #string1 = front_back("Hello")
 swapped = front_back(string)
 print(swapped)

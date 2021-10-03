@@ -22,6 +22,6 @@ print("Hello World")
 #export <variable>=</path/to/directory>
 #e.g. "export ANDROID_HOME=/home/manu/bin"
 #export PATH=$PATH:$<variable>
-#e.g. "export PATH=$PATH:ANDROID_HOME"	
+#e.g. "export PATH=$PATH:ANDROID_HOME"
 #		Where "ANDROID_HOME" is the variable holding the path to directory of the binary/executable
 #		In this example, it is APPENDING to the value of the PATH variable, means it is adding the value to the last part
