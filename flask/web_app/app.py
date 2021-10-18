@@ -27,8 +27,7 @@ def logged_in():
             return render_template("profile.html")
         else:
             return redirect("/registration")
-    else:
-        return "Error connecting to database!"
+    return "Error connecting to database!"
 
 @app.route("/registration", methods=["GET", "POST"])
 def register_now():
@@ -44,8 +43,10 @@ def register_now():
             data=(uname,passwd,eadd,usertag)
             cursor.execute(query,data)
             mydb.commit()
+            cursor.close()
+            mydb.close()
             return redirect("/")
     return render_template("register.html")
 
 if __name__=="__main__":
-    app.run(host="1.1.1.2")
+    app.run(host="0.0.0.0",port="1234",debug=True)
