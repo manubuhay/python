@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Registration Form</title>
   </head>
   <link rel="stylesheet" href={{url_for('static',filename='main.css')}}>
-  <body>
+  <body> -->
+  {% extends "base.html" %}
+  {% block title %}Registration Form{% endblock %}
+  {% block content %}
     <h1>Fill up the form and register:</h1>
     <form method="POST">
       <input type ="text" name="name" placeholder="Username">
@@ -23,5 +26,6 @@
       <a href="/">Login!!<a>
       <br><br>
     </form>
-  </body>
-</html>
+  {% endblock %}
+  <!-- </body>
+</html> -->
