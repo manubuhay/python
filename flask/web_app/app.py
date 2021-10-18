@@ -61,7 +61,7 @@ def register_now():
 
 @app.route("/profile")
 def user_profile():
-    if  "user_id" in session:
+    if "user_id" in session:
         user=session["user"]
         #return "Welcome "+ f"<h1>{user}!</h1>"
         return render_template("profile.html")

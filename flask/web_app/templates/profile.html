@@ -3,7 +3,7 @@
   {% block content %}
     <center>
     <h1>LOGIN SUCCESSFUL!</h1>
-    <h1>WELCOME TO YOUR PROFILE!</h1>
+    <h1>WELCOME TO YOUR PROFILE {% print(session['user_id']) %}!</h1>
     </center>
     <a href="/logout">Logout!<a>
   {% endblock %}
