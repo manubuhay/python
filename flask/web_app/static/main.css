@@ -1,5 +1,12 @@
 body {
-  font-family: Cambria;
+  font-family: 'Cambria';
   font-weight: bold;
   background-color: #a366e1;
+}
+
+input[type=submit]{
+  font-family: 'Calibri';
+}
+input[type=reset]{
+  font-family: 'Calibri';
 }

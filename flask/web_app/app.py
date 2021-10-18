@@ -14,6 +14,8 @@ app.permanent_session_lifetime= timedelta(hours=5)
 
 @app.route("/")
 def index_page():
+    if "user_id" in session:
+        return redirect(url_for("user_profile")) #Redirect user to profile page if session exists
     return render_template("index.html")
 
 @app.route("/", methods=["POST"])
@@ -30,11 +32,8 @@ def log_in():
         cursor.execute(query,data)
         results=cursor.fetchall()
         if len(results)==1:
-            #return redirect(url_for("user_profile"))
-            return render_template("profile.html")
+            return redirect(url_for("user_profile"))
         else:
-            if "user_id" in session:
-                return redirect(url_for("/profile"))
             return redirect("/registration")
     return "Error connecting to database!"
 
@@ -53,8 +52,11 @@ def register_now():
             cursor.execute(query,data)
             mydb.commit()
             cursor.close()
-            mydb.close()
+            #mydb.close()
             return redirect("/")
+    else:
+        if "user_id" in session: #If session exists, make '/registration' inaccessible to logged-in user
+            return redirect(url_for("user_profile"))
     return render_template("register.html")
 
 @app.route("/profile")
