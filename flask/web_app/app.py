@@ -12,17 +12,11 @@ app=Flask(__name__)
 app.secret_key="!@#$%"
 app.permanent_session_lifetime= timedelta(hours=5)
 
-# @app.route("/")
-# def index_page():
-#     if "user_id" in session:
-#         return redirect(url_for("user_profile")) #Redirect user to profile page if session exists
-#     return render_template("index.html")
-
-def if_exists(tag,pw):
+def if_exists(utag,pw):
     if mydb.is_connected():
         cursor=mydb.cursor()
         query="""SELECT usertag, passwd FROM human WHERE usertag=%s AND passwd=%s"""
-        data=(tag,pw)
+        data=(utag,pw)
         cursor.execute(query,data)
         results=cursor.fetchall()
         cursor.close()
@@ -40,18 +34,20 @@ def insert_db(name,passwd,eadd,utag):
 @app.route("/", methods=["POST","GET"])
 def log_in():
     if request.method=="POST":
-        session.permanent=True # Reinforces line 13, false logs you out when exiting browser/tab
-        uid=request.form['utag']
-        passwd=request.form['pass']
-        session['user_id']=uid
-        session['pwd']=passwd
-        results=if_exists(uid, passwd)
-        if len(results)==1:
-            return redirect(url_for("user_profile"))
-        else:
-            return redirect("/registration")
-    else:
-         return render_template("index.html")
+        if all((request.form['utag'],request.form['pass'])):
+        #if request.form['utag'] and request.form['pass']:
+            session.permanent=True # Reinforces line 13, false logs you out when exiting browser/tab
+            uid=request.form['utag']
+            passwd=request.form['pass']
+            session['user_id']=uid
+            session['pwd']=passwd
+            results=if_exists(uid, passwd)
+            if len(results)==1:
+                return redirect(url_for("user_profile"))
+            else:
+                return redirect("/registration")
+        return "Missing Value/s!"
+    return render_template("index.html")
 
 @app.route("/registration", methods=["GET", "POST"])
 def register_now():
@@ -60,7 +56,9 @@ def register_now():
         passwd=request.form['pass']
         usertag=request.form['utag']
         eadd=request.form['e_mail']
-        insert_db(uname,passwd,eadd,usertag)
+        if not all((uname,passwd,usertag,eadd)): #Makes sure all form inputs are not empty
+            return "Missing Values!"
+        insert_db(uname,passwd,eadd,usertag) #Inserts values if none are empty
         return redirect("/")
     return render_template("register.html")
 
