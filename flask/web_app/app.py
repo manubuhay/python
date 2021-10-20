@@ -12,6 +12,7 @@ app=Flask(__name__)
 app.secret_key="!@#$%"
 app.permanent_session_lifetime= timedelta(hours=5)
 
+################################################################################
 def if_exists(utag,pw):
     if mydb.is_connected():
         cursor=mydb.cursor()
@@ -31,6 +32,16 @@ def insert_db(name,passwd,eadd,utag):
         mydb.commit()
         cursor.close()
 
+def remove_db(utag):
+    if mydb.is_connected():
+        query="""DELETE FROM human WHERE usertag=%s"""
+        data=(utag,)
+        cursor=mydb.cursor()
+        cursor.execute(query,data)
+        mydb.commit()
+        cursor.close()
+################################################################################
+
 @app.route("/", methods=["POST","GET"])
 def log_in():
     if request.method=="POST":
@@ -39,14 +50,16 @@ def log_in():
             session.permanent=True # Reinforces line 13, false logs you out when exiting browser/tab
             uid=request.form['utag']
             passwd=request.form['pass']
-            session['user_id']=uid
-            session['pwd']=passwd
             results=if_exists(uid, passwd)
             if len(results)==1:
-                return redirect(url_for("user_profile"))
-            else:
-                return redirect("/registration")
+                session['user_id']=uid # If authenticated, save session data, if declared out of this
+                session['pwd']=passwd  # "if statement", it will save POST data and will direct you to /profile
+                return redirect(url_for("user_profile")) # even if user doesn't exist in DB
+            return redirect("/registration")
         return "Missing Value/s!"
+    else:
+        if "user_id" in session:
+            return redirect("/profile")
     return render_template("index.html")
 
 @app.route("/registration", methods=["GET", "POST"])
@@ -60,6 +73,9 @@ def register_now():
             return "Missing Values!"
         insert_db(uname,passwd,eadd,usertag) #Inserts values if none are empty
         return redirect("/")
+    else:
+        if "user_id" in session:
+            return redirect(url_for("user_profile"))
     return render_template("register.html")
 
 @app.route("/profile")
@@ -78,15 +94,10 @@ def log_out():
 @app.route("/delete")
 def delete_user():
     if "user_id" in session:
-        if mydb.is_connected():
-            query="""DELETE FROM human WHERE usertag=%s"""
-            data=(session['user_id'],)
-            cursor=mydb.cursor()
-            cursor.execute(query,data)
-            mydb.commit()
-            cursor.close()
-        else:
-            return "Error connecting to database!"
+        remove_db(session['user_id']) # Remove user in DB first before popping session
+        session.pop("user_id",None)   # otherwise parameter in remove_db will be empty
+    else:
+        return "Error connecting to database!"
     return redirect("/")
 
 if __name__=="__main__":
