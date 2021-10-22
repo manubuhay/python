@@ -19,7 +19,8 @@ def if_exists(utag,pw):
         query="""SELECT usertag, passwd FROM human WHERE usertag=%s AND passwd=%s"""
         data=(utag,pw)
         cursor.execute(query,data)
-        results=cursor.fetchall()
+        #results=cursor.fetchall()
+        results=cursor.fetchone()
         cursor.close()
         return results
 
@@ -51,7 +52,8 @@ def log_in():
             uid=request.form['utag']
             passwd=request.form['pass']
             results=if_exists(uid, passwd)
-            if len(results)==1:
+            #if len(results)==1:
+            if results:
                 session['user_id']=uid # If authenticated, save session data, if declared out of this
                 session['pwd']=passwd  # "if statement", it will save POST data and will direct you to /profile
                 return redirect(url_for("user_profile")) # even if user doesn't exist in DB
