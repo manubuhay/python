@@ -13,7 +13,7 @@ app.secret_key="!@#$%"
 app.permanent_session_lifetime= timedelta(hours=5)
 
 ################################################################################
-def if_exists(utag,pw):
+def ifexists_db(utag,pw):
     if mydb.is_connected():
         cursor=mydb.cursor()
         query="""SELECT usertag, passwd FROM human WHERE usertag=%s AND passwd=%s"""
@@ -35,12 +35,30 @@ def insert_db(name,passwd,eadd,utag):
 
 def remove_db(utag):
     if mydb.is_connected():
+        cursor=mydb.cursor()
         query="""DELETE FROM human WHERE usertag=%s"""
         data=(utag,)
-        cursor=mydb.cursor()
         cursor.execute(query,data)
         mydb.commit()
         cursor.close()
+
+def update_db(name,passwd,eadd,utag,old_utag):
+    if mydb.is_connected():
+        cursor=mydb.cursor()
+        query="""UPDATE human SET name=%s, passwd=%s, email=%s, usertag=%s WHERE usertag=%s"""
+        data=(name,passwd,eadd,utag,old_utag)
+        cursor.execute(query,data)
+        mydb.commit()
+        cursor.close()
+
+def fetchuser_db(utag):
+    if mydb.is_connected():
+        cursor=mydb.cursor()
+        query="""SELECT * FROM human WHERE usertag=%s"""
+        data=(utag,)
+        cursor.execute(query,data)
+        results=cursor.fetchone()
+        return results
 ################################################################################
 
 @app.route("/", methods=["POST","GET"])
@@ -51,7 +69,7 @@ def log_in():
             session.permanent=True # Reinforces line 13, false logs you out when exiting browser/tab
             uid=request.form['utag']
             passwd=request.form['pass']
-            results=if_exists(uid, passwd)
+            results=ifexists_db(uid, passwd)
             #if len(results)==1:
             if results:
                 session['user_id']=uid # If authenticated, save session data, if declared out of this
@@ -96,11 +114,29 @@ def log_out():
 @app.route("/delete")
 def delete_user():
     if "user_id" in session:
-        remove_db(session['user_id']) # Remove user in DB first before popping session
-        session.pop("user_id",None)   # otherwise parameter in remove_db will be empty
-    else:
+        remove_db(session['user_id']) # Remove user in DB first before popping session otherwise parameter
+        session.pop("user_id",None)   # in remove_db will be empty, "None" will prevent raising error
+    else:                             # keyError if the key at the first parameter is not found in the session
         return "Error connecting to database!"
     return redirect("/")
+
+@app.route("/update", methods=["POST","GET"])
+def update_user(): # "usertag" will be readonly in "update_details.html", to preserve session data
+    if "user_id" in session:
+        results=fetchuser_db(session['user_id'])
+        if request.method=="POST":
+            uname=request.form['up_name']
+            passwd=request.form['up_pass']
+            usertag=request.form['up_utag'] # For logic to make usertag editable, edit usertag, after POST
+            eadd=request.form['up_email']   # request, pop the session, redirect back to "index.html"
+            if not all((uname,passwd,usertag,eadd)):
+                return "Values cannot be empty!"
+            else:
+                update_db(uname,passwd,eadd,usertag,session['user_id'])
+                results=fetchuser_db(session['user_id'])
+        return render_template("update_details.html",results=results)
+    else:
+        return redirect(url_for("log_in"))
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port="1234",debug=True)

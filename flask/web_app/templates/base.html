@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href={{url_for('static',filename='main.css')}}>
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}" type="text/css">
+    <link rel = "icon" href="{{url_for('static',filename='plus.png')}}"
+        type = "image/x-icon">
   </head>
   <body>
 {% block content %}
