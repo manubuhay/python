@@ -74,7 +74,7 @@ def log_in():
             if results:
                 session['user_id']=uid # If authenticated, save session data, if declared out of this
                 session['pwd']=passwd  # "if statement", it will save POST data and will direct you to /profile
-                return redirect(url_for("user_profile")) # even if user doesn't exist in DB
+                return redirect(url_for("user_profile",user=session['user_id'])) # even if user doesn't exist in DB
             return redirect("/registration")
         return "Missing Value/s!"
     else:
@@ -95,15 +95,15 @@ def register_now():
         return redirect("/")
     else:
         if "user_id" in session:
-            return redirect(url_for("user_profile"))
+            return redirect(url_for("user_profile",user=session['user_id']))
     return render_template("register.html")
 
-@app.route("/profile")
-def user_profile():
+@app.route("/profile/<user>")
+def user_profile(user):
     if "user_id" in session:
         user=session["user_id"]
         #return "Welcome "+ f"<h1>{user}!</h1>"
-        return render_template("profile.html",user=user) # Pass user as paramter to diplay in HTML
+        return render_template("profile.html",user=session['user_id']) # Pass user as parameter to diplay in HTML
     return redirect("/")                                 # page, you can also just use session data
 
 @app.route("/logout")
@@ -133,7 +133,7 @@ def update_user(): # "usertag" will be readonly in "update_details.html", to pre
                 return "Values cannot be empty!"
             else:
                 update_db(uname,passwd,eadd,usertag,session['user_id'])
-                results=fetchuser_db(session['user_id'])
+                results=fetchuser_db(session['user_id']) # Pass values to display on "update_details.html"
         return render_template("update_details.html",results=results)
     else:
         return redirect(url_for("log_in"))
