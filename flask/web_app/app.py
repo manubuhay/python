@@ -103,8 +103,8 @@ def user_profile():
     if "user_id" in session:
         user=session["user_id"]
         #return "Welcome "+ f"<h1>{user}!</h1>"
-        return render_template("profile.html")
-    return redirect("/")
+        return render_template("profile.html",user=user) # Pass user as paramter to diplay in HTML
+    return redirect("/")                                 # page, you can also just use session data
 
 @app.route("/logout")
 def log_out():
