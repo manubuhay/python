@@ -79,7 +79,7 @@ def log_in():
         return "Missing Value/s!"
     else:
         if "user_id" in session:
-            return redirect("/profile")
+            return redirect(url_for("user_profile",user=session['user_id']))
     return render_template("index.html")
 
 @app.route("/registration", methods=["GET", "POST"])
@@ -104,7 +104,7 @@ def user_profile(user):
         user=session["user_id"]
         #return "Welcome "+ f"<h1>{user}!</h1>"
         return render_template("profile.html",user=session['user_id']) # Pass user as parameter to diplay in HTML
-    return redirect("/")                                 # page, you can also just use session data
+    return redirect("/")                                               # page, you can also just use session data
 
 @app.route("/logout")
 def log_out():
