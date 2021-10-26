@@ -71,9 +71,8 @@ def log_in():
             passwd=request.form['pass']
             results=ifexists_db(uid, passwd)
             #if len(results)==1:
-            if results:
-                session['user_id']=uid    # If authenticated, save session data, if declared out of this
-                session['is_logged']=True # "if statement", it will save POST data and will direct you to /profile
+            if results: # If authenticated, save session data, if declared out of this
+                session['user_id']=uid # "if statement", it will save POST data and will direct you to /profile
                 return redirect(url_for("user_profile",user=session['user_id'])) # even if user doesn't exist in DB
             return redirect("/registration")
         return "Missing Value/s!"
