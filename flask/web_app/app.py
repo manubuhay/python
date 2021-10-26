@@ -3,7 +3,7 @@ import os
 import mysql.connector as dtb
 from datetime import timedelta
 
-mydb=dtb.connect(host="1.1.1.59"
+mydb=dtb.connect(host="codebase"
                 ,user="python"
                 ,password="Python_123"
                 ,database="socmed")
@@ -16,7 +16,7 @@ app.permanent_session_lifetime= timedelta(hours=5)
 def ifexists_db(utag,pw):
     if mydb.is_connected():
         cursor=mydb.cursor()
-        query="""SELECT usertag, passwd FROM human WHERE usertag=%s AND passwd=%s"""
+        query="""SELECT usertag, passwd FROM user_data WHERE usertag=%s AND passwd=%s"""
         data=(utag,pw)
         cursor.execute(query,data)
         #results=cursor.fetchall()
@@ -27,7 +27,7 @@ def ifexists_db(utag,pw):
 def insert_db(name,passwd,eadd,utag):
     if mydb.is_connected():
         cursor=mydb.cursor()
-        query="""INSERT INTO human(name,passwd,email,usertag) VALUES( %s, %s, %s, %s)"""
+        query="""INSERT INTO user_data(name,passwd,email,usertag) VALUES( %s, %s, %s, %s)"""
         data=(name,passwd,eadd,utag)
         cursor.execute(query,data)
         mydb.commit()
@@ -36,7 +36,7 @@ def insert_db(name,passwd,eadd,utag):
 def remove_db(utag):
     if mydb.is_connected():
         cursor=mydb.cursor()
-        query="""DELETE FROM human WHERE usertag=%s"""
+        query="""DELETE FROM user_data WHERE usertag=%s"""
         data=(utag,)
         cursor.execute(query,data)
         mydb.commit()
@@ -45,7 +45,7 @@ def remove_db(utag):
 def update_db(name,passwd,eadd,utag,old_utag):
     if mydb.is_connected():
         cursor=mydb.cursor()
-        query="""UPDATE human SET name=%s, passwd=%s, email=%s, usertag=%s WHERE usertag=%s"""
+        query="""UPDATE user_data SET name=%s, passwd=%s, email=%s, usertag=%s WHERE usertag=%s"""
         data=(name,passwd,eadd,utag,old_utag)
         cursor.execute(query,data)
         mydb.commit()
@@ -54,7 +54,7 @@ def update_db(name,passwd,eadd,utag,old_utag):
 def fetchuser_db(utag):
     if mydb.is_connected():
         cursor=mydb.cursor()
-        query="""SELECT * FROM human WHERE usertag=%s"""
+        query="""SELECT * FROM user_data WHERE usertag=%s"""
         data=(utag,)
         cursor.execute(query,data)
         results=cursor.fetchone()
@@ -72,8 +72,8 @@ def log_in():
             results=ifexists_db(uid, passwd)
             #if len(results)==1:
             if results:
-                session['user_id']=uid # If authenticated, save session data, if declared out of this
-                session['pwd']=passwd  # "if statement", it will save POST data and will direct you to /profile
+                session['user_id']=uid    # If authenticated, save session data, if declared out of this
+                session['is_logged']=True # "if statement", it will save POST data and will direct you to /profile
                 return redirect(url_for("user_profile",user=session['user_id'])) # even if user doesn't exist in DB
             return redirect("/registration")
         return "Missing Value/s!"
