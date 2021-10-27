@@ -63,6 +63,7 @@ def fetchuser_db(utag):
 
 @app.route("/", methods=["POST","GET"])
 def log_in():
+    err_msg=""
     if request.method=="POST":
         if all((request.form['utag'],request.form['pass'])):
         #if request.form['utag'] and request.form['pass']:
@@ -75,27 +76,31 @@ def log_in():
                 session['user_id']=uid # "if statement", it will save POST data and will direct you to /profile
                 return redirect(url_for("user_profile",user=session['user_id'])) # even if user doesn't exist in DB
             return redirect("/registration")
-        return "Missing Value/s!"
+        #return "Missing Value/s!"
+        err_msg="Missing Values!"
     else:
         if "user_id" in session:
             return redirect(url_for("user_profile",user=session['user_id']))
-    return render_template("index.html")
+    return render_template("index.html",error=err_msg)
 
 @app.route("/registration", methods=["GET", "POST"])
 def register_now():
+    err_msg=""
     if request.method=="POST":
         uname=request.form['name']
         passwd=request.form['pass']
         usertag=request.form['utag']
         eadd=request.form['e_mail']
         if not all((uname,passwd,usertag,eadd)): #Makes sure all form inputs are not empty
-            return "Missing Values!"
-        insert_db(uname,passwd,eadd,usertag) #Inserts values if none are empty
-        return redirect("/")
+            #return "Missing Values!"
+            err_msg="Value/s are missing!"
+        else:
+            insert_db(uname,passwd,eadd,usertag) #Inserts values if none are empty
+            return redirect("/")
     else:
         if "user_id" in session:
             return redirect(url_for("user_profile",user=session['user_id']))
-    return render_template("register.html")
+    return render_template("register.html",error=err_msg)
 
 @app.route("/profile/<user>")
 def user_profile(user):

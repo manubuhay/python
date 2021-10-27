@@ -163,3 +163,7 @@ a {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
+.msg {
+  color: red;
+  text-align: center
+}
