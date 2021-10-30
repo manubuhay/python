@@ -1,6 +1,6 @@
 import json
 from urllib.request import urlopen
-# From "https://github.com/herval/yahoo-finance/issues/51" and "https://github.com/herval/yahoo-finance/issues/51"
+# From "https://github.com/herval/yahoo-finance/issues/51"
 # with urlopen("https://query1.finance.yahoo.com/v7/finance/quote?symbols=TLS.AX,MUS.AX") as response:
 with urlopen("https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=1d&includePrePost=false&interval=2m&corsDomain=finance.yahoo.com&.tsrc=finance") as response:
     source = response.read()
