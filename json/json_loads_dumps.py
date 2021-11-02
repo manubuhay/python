@@ -25,7 +25,7 @@ data=json.loads(json_string)
 # print(data['people'])
 print(type(data['people'])) #Returns a type list
 for person in data['people']:
-    #print(person)
+    # print(person)
     # print(person['phone'])
     del person['phone'] # Delete phone key in json file
 
