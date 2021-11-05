@@ -1,5 +1,5 @@
 import mysql.connector as db
-conn=db.connect(host="1.1.1.59"
+conn=db.connect(host="localhost"
                    ,username="admin"
                    ,password="Pyth0n_123"
                    ,database="python")
