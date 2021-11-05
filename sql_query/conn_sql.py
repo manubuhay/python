@@ -1,7 +1,7 @@
 import mysql.connector as dtb
-mydb=dtb.connect(host="localhost"
-                ,user="root"
-                ,password="Python_123"
+mydb=dtb.connect(host="1.1.1.59"
+                ,user="admin"
+                ,password="Pyth0n_123"
                 ,database="python")
 
 if mydb.is_connected():
@@ -11,6 +11,6 @@ else:
 
 cursordb=mydb.cursor()
 dbname=input("Input Database Name: ")
-newdb="CREATE DATABASE " + dbname
-#print(newdb)
+# newdb="CREATE DATABASE " + dbname
+newdb="CREATE DATABASE %s"%(dbname)
 cursordb.execute(newdb)
