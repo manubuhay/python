@@ -1,5 +1,5 @@
 import mysql.connector as dtb
-mydb=dtb.connect(host="1.1.1.59"
+mydb=dtb.connect(host="localhost"
                 ,user="admin"
                 ,password="Pyth0n_123"
                 ,database="python")

@@ -1,7 +1,7 @@
 import mysql.connector as db
-conn=db.connect(host="localhost"
-                   ,username="root"
-                   ,password="Python_123"
+conn=db.connect(host="1.1.1.59"
+                   ,username="admin"
+                   ,password="Pyth0n_123"
                    ,database="python")
 
 if conn.is_connected():
@@ -12,9 +12,10 @@ if conn.is_connected():
     for i in tables: #Iterate over the list and display each values in new line
         print(i)
     table=input("Which table? ")
-    cmd="SELECT * FROM "
-    query=cmd+table
-    cursor.execute(query) #No need for variable catcher
+    cmd="SELECT * FROM %s"%(table)
+    # query=cmd+table
+    # cursor.execute(query) #No need for variable catcher
+    cursor.execute(cmd)
     result=cursor.fetchall() #fetchall() retrieves data from last query(execute query), needs variable catcher
     #print(result) #Does not iterate, displays data with no new line
     for i in result: #Iterate over the list and display each values in new line
