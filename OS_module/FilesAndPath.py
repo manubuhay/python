@@ -1,13 +1,20 @@
 import os
 
 print(os.getcwd())
-path="/tesseract-py"
+path=os.getcwd()+"./top_dir"
+path="."
 os.chdir(path)
 
 for dirpath,dirnames,filenames in os.walk(path):
     print("Current Path:",dirpath)
     print("Directories:",dirnames)
     print("Files:",filenames)
+    print()
+
+for x,y,z in os.walk(path):
+    print("Current Path:",x)
+    print("Directories:",y)
+    print("Files:",z)
     print()
 
 file_path=os.path.join(os.getcwd(),"new_file.txt")
