@@ -11,7 +11,8 @@ def send_command(cmd,results):
         results.append(line.strip('\n'))
 
 def main():
-    while(cmd:=input("Input Command: "))!="":
+    # while(cmd:=input("Input Command: "))!="":
+    while(cmd:=input("###Input Command: ")):
         results=[] #Do not make this global, so the values will get reset after each input
         send_command(cmd,results) #Result list also needs to be passed to obtain and reset its values in loop iteration
         for i in results:
