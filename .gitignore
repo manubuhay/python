@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 OS_module/top_dir
 OS_module/top_dir/*
+.idea/
 # C extensions
 *.so
 
