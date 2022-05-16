@@ -13,3 +13,6 @@ if __name__ == '__main__':
     full_name=lambda fn,ln: fn.strip().title()+" "+ln.strip().title() 
     name=full_name("  jOhn","smith   ")
     print(name)
+    f=lambda a,b:a+b
+    result=f(5,6)
+    print(result)
