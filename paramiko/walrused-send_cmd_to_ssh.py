@@ -15,7 +15,8 @@ def main():
     while(cmd:=input("###Input Command: ")):
         results=[] #Do not make this global, so the values will get reset after each input
         send_command(cmd,results) #Result list also needs to be passed to obtain and reset its values in loop iteration
-        for i in results:
-            print(i.strip())
+        # for i in results:
+        #     print(i.strip())
+        print(stripped:=[i.strip() for i in results])
 
 main() #Call function, if you don't, else statement's "return" line(line 22) will be executed by main
