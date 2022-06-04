@@ -7,8 +7,9 @@ def send_command(cmd,results):
     client.load_system_host_keys()
     client.connect('HOSTNAME',username='U_NAME',password='PASSWD') # You can also use ssh-copy-id(or copy client's id_rsa.pub to server's auth_keys), to omit password as paramter
     ssh_stdin,ssh_stdout,ssh_stderr=client.exec_command(cmd)
-    for line in ssh_stdout:
-        results.append(line.strip('\n'))
+    # for line in ssh_stdout:
+    #     results.append(line.strip('\n'))
+    results=[results.append(line.strip('\n')) for line in ssh_stdout]
 
 def main():
     # while(cmd:=input("Input Command: "))!="":
