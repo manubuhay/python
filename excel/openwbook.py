@@ -42,3 +42,19 @@ Wb['B7'].fill = first_style
 # To save the spreadsheet, use .save() function:
 
 your_workbook2.save(filename='Test.xlsx') 
+
+#Color scale
+
+from openpyxl.formatting.rule import ColorScaleRule
+
+Condition_style = ColorScaleRule(start_type = 'min', start_color = 'E0FFFF', end_type = 'max', end_color = '008080')
+
+Wb.conditional_formatting.add('A2:A11', Condition_style)
+
+your_workbook2.save(filename='Test.xlsx')
+
+#Add sum formula
+
+Wb['A13'] = 'Total'
+Wb['B13'] = '=SUM(A2:A11)'
+your_workbook2.save(filename='Test.xlsx') 
