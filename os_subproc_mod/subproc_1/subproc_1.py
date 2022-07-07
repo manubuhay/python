@@ -15,7 +15,7 @@ print(p2.stdout) # Add 'text=True' as subprocess parameter, no need for decode f
 with open("out_put.txt", "w") as f:
     p3=subprocess.run(["netstat","-ano"], stdout=f, text=True)
 
-p4=subprocess.run(["dir","dne"], shell=True,capture_output=False,text=T # "check=True" captures entire error
+p4=subprocess.run(["dir","dne"], shell=True,capture_output=False,text=True) # "check=True" captures entire error
 print(p4.returncode)
 print("Error is: ",p4.stderr)
 
