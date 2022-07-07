@@ -1,4 +1,4 @@
-import cv2
+import cv2 #pip3 install opencv-python
 
 image = cv2.imread("02.jpg")
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
