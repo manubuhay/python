@@ -14,10 +14,10 @@ def main()->None:
     while True:
         mapping = {1: "IP1",2: "IP2",3: "www.google.com",4: "8.8.8.8"}
         print("####################################################")
-        print("# 1 - Ping Firewall                                #")
-        print("# 2 - Ping Cloudkey                                #")
-        print("# 3 - Ping Internet                                #")
-        print("# 4 - Ping Internet(No DNS)                        #")
+        print("|| 1 - Ping Firewall                              ||")
+        print("|| 2 - Ping Cloudkey                              ||")
+        print("|| 3 - Ping Internet                              ||")
+        print("|| 4 - Ping Internet(No DNS)                      ||")
         print("####################################################")
         opt=int(input("Which Option: "))
         if opt < 5:
