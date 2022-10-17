@@ -7,6 +7,7 @@ def _subproc(ipurl)->None:
     count = "-c"
     if os.name == "nt":
         shell_value=True
+        # subprocess.run(["ping",ipurl],shell=True,text=True)
         count = "-n"
     # Else, it might be linux or mac (posix)
     # else:
