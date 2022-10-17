@@ -3,12 +3,14 @@ import subprocess
 import os
 
 def _subproc(ipurl)->None:
+    shell_value=False
     if os.name == "nt":
-        subprocess.run(["ping",ipurl],shell=True,text=True)
+        shell_value=True
     # Else, it might be linux or mac (posix)
-    else:
+    # else:
         # Omit 'shell=True' in LINUX/MAC systems
-        subprocess.run(["ping",ipurl],text=True)
+        # subprocess.run(["ping",ipurl],text=True)
+    subprocess.run(["ping", ipurl], shell=shell_value, text=True)
 
 def main()->None:
     while True:
