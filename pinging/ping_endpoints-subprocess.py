@@ -4,13 +4,15 @@ import os
 
 def _subproc(ipurl)->None:
     shell_value=False
+    count = "-c"
     if os.name == "nt":
         shell_value=True
+        count = "-n"
     # Else, it might be linux or mac (posix)
     # else:
         # Omit 'shell=True' in LINUX/MAC systems
         # subprocess.run(["ping",ipurl],text=True)
-    subprocess.run(["ping", ipurl], shell=shell_value, text=True)
+    subprocess.run(["ping",count,"5",ipurl], shell=shell_value, text=True)
 
 def main()->None:
     while True:
