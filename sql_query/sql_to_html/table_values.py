@@ -2,7 +2,7 @@ import mysql.connector as db
 import os
 import pandas as pd
 
-conn=db.connect(host="<ip_of_db>"
+conn=db.connect(host="<IP_OF_DB>"
                 ,username="python"
                 ,password="Python_123"
                 ,database="sanctuary")
