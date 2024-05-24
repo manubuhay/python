@@ -4,8 +4,10 @@
 #     "age":35,
 #     "location":(12.34567,-98.7654)
 # }
-# print(atox["name"])
-# print(atox["location"])
+# # print(company["name"])
+# # print(company["location"])
+# position = company.get("designation",None )
+# print(position)
 
 companylist=[
     {
@@ -48,3 +50,5 @@ for a in range(len(companylist)):
     for b in companylist[a]:
         if "location" in b: # if location exists as key pair, print dictionary record
             print(companylist[a][b])
+        
+    
