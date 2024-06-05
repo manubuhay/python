@@ -5,6 +5,7 @@ __pycache__/
 OS_module/top_dir
 OS_module/top_dir/*
 .idea/
+get_sysinfo/system.txt
 # C extensions
 *.so
 
