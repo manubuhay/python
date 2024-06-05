@@ -1,18 +1,56 @@
------
- SerialNumber            
-
-To be filled by O.E.M.  
-
-
-
-
- -----
 ---------------------------
  SerialNumber            
 
-To be filled by O.E.M.  
+NXGNPSP00675026F917600  
+
+
+
+ Geralt of Rivia
+ OS Manufacturer:           Microsoft Corporation
+System Manufacturer:       Acer
+
+ System Model:              Aspire A315-51
+                           [01]: Intel64 Family 6 Model 142 Stepping 9 GenuineIntel ~2712 Mhz
+
+---------------------------
+---------------------------
+ SerialNumber            
+
+NXGNPSP00675026F917600  
 
 
 
 
- ---------------------------
+ Geralt of Rivia
+ OS Manufacturer:           Microsoft Corporation
+System Manufacturer:       Acer
+
+ System Model:              Aspire A315-51
+                           [01]: Intel64 Family 6 Model 142 Stepping 9 GenuineIntel ~2712 Mhz
+
+---------------------------
+---------------------------
+ SerialNumber            
+
+NXGNPSP00675026F917600  
+
+
+
+ Geralt of Rivia OS Manufacturer:           Microsoft Corporation
+System Manufacturer:       Acer
+ System Model:              Aspire A315-51
+                           [01]: Intel64 Family 6 Model 142 Stepping 9 GenuineIntel ~2712 Mhz
+---------------------------
+---------------------------
+ SerialNumber            
+
+NXGNPSP00675026F917600  
+
+
+
+ Geralt of Rivia
+ OS Manufacturer:           Microsoft Corporation
+System Manufacturer:       Acer
+ System Model:              Aspire A315-51
+                           [01]: Intel64 Family 6 Model 142 Stepping 9 GenuineIntel ~2712 Mhz
+---------------------------

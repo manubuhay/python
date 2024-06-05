@@ -5,10 +5,14 @@ if os.name == "nt":
     shell_value=True
     count = "-n"
     results = subprocess.run(["wmic", "bios", "get", "serialnumber"], shell=shell_value, capture_output=True, text=True)
+    cmd = subprocess.run(["systeminfo.exe"], shell=shell_value, capture_output=True, text=True)
+    pipe1 = subprocess.run(["findstr","Manufacturer"],shell=True, capture_output=True, text=True, input=cmd.stdout)
+    pipe2 = subprocess.run(["findstr","Model"], shell=True, capture_output=True, text=True, input=cmd.stdout)
     # print(results.stdout)
-    output = "---------------------------\n %s\n ---------------------------\n"%(results.stdout)
+    owner=input("Owner: ")
+    output = "---------------------------\n %s %s\n %s %s---------------------------\n"%(results.stdout, owner, pipe1.stdout, pipe2.stdout)
     # print(type(results.stdout))
-    file = open("system.txt","a")
+    file = open("system.txt", "a")
     file.write(output)
     file.close()
 else:
