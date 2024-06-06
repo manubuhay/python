@@ -13,6 +13,11 @@ if os.name == "nt":
     output = "---------------------------\n %s %s\n %s %s---------------------------\n"%(results.stdout, owner, pipe1.stdout, pipe2.stdout)
     # print(type(results.stdout))
     file = open("system.txt", "a")
+
+    # From: https://stackoverflow.com/questions/7169845/using-python-how-can-i-access-a-shared-folder-on-windows-network
+    # The syntax below is for accessing "system.txt" if it is in a network share
+    # file = open("\\\\server_ip\\directory1\\directory2\\system.txt", "a")
+    
     file.write(output)
     file.close()
 else:
