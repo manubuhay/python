@@ -2,10 +2,8 @@ import subprocess
 import os
 
 if os.name == "nt":
-    shell_value=True
-    count = "-n"
-    results = subprocess.run(["wmic", "bios", "get", "serialnumber"], shell=shell_value, capture_output=True, text=True)
-    cmd = subprocess.run(["systeminfo.exe"], shell=shell_value, capture_output=True, text=True)
+    results = subprocess.run(["wmic", "bios", "get", "serialnumber"], shell=True, capture_output=True, text=True)
+    cmd = subprocess.run(["systeminfo.exe"], shell=True, capture_output=True, text=True)
     pipe1 = subprocess.run(["findstr","Manufacturer"],shell=True, capture_output=True, text=True, input=cmd.stdout)
     pipe2 = subprocess.run(["findstr","Model"], shell=True, capture_output=True, text=True, input=cmd.stdout)
     # print(results.stdout)
