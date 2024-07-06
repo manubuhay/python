@@ -11,9 +11,17 @@ def send_command(cmd,servers):
 
 def main():
     servers = [
-    {"ip": "IP1", "user": "root","password": "password"},
-    {"ip": "IP2", "user": "root","password": "password"}
-    ]
+    {
+    "ip": "IP1", 
+    "user": "root",
+    "password": "password"
+    },
+    {
+    "ip": "IP2", 
+    "user": "root",
+    "password": "password"
+    }
+              ]
     cmd="reboot"
     send_command(cmd,servers)
 
