@@ -1,7 +1,5 @@
 # Enable "SSH User Authentication by Password" in Cisco Switch GUI in Security >> SSH Server >> SSH User Authentication
-# Import the Paramiko library for SSH communication
 import paramiko
-# Import the time module for sleep functionality
 import time
 
 def connect_to_cbs250(hostname, username, password, command):
@@ -20,7 +18,8 @@ def connect_to_cbs250(hostname, username, password, command):
         print(output)
         # Check if login was successful by looking for '#' or '>'
         if '#' in output or '>' in output:
-            # Send the 'enable' command to enter privileged mode
+            # Send the 'enable' command to enter privileged mode, 
+            # But when using the user "admin" in ssh, initial login brings you into privileged mode by default, skipping user exec mode
             channel.send("enable\n")
             time.sleep(1)
 
@@ -28,7 +27,7 @@ def connect_to_cbs250(hostname, username, password, command):
             channel.send(command + "\n")
             time.sleep(1)
             # Sends the yes(Y/y) command when the CLI asks "This command will reset the whole system and disconnect your current session. 
-            # Do you want to continue ? (Y/N)[N]" comment this 2 lines if you are rebooting or copying running config to startup config
+            # Do you want to continue ? (Y/N)[N]" comment these 2 lines if you are rebooting or copying running config to startup config
             channel.send("y\n")
             time.sleep(1)
             
@@ -50,6 +49,6 @@ def connect_to_cbs250(hostname, username, password, command):
 
 if __name__ == "__main__":
     command = "show vlan"
-    connect_to_cbs250(hostname, username, password, command)
+    connect_to_cbs250("hostname", "username", "password", command)
 
 # From: https://www.youtube.com/watch?v=VIZ3wDjU2Bk

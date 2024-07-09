@@ -33,4 +33,4 @@ def connect_to_pfsense(hostname, username, password, command):
 if __name__ == "__main__":
     command = "y"
     # User needs to have access to Halt option if you want to shutdown the system
-    connect_to_pfsense(hostname, username, password, command)
+    connect_to_pfsense('hostname', 'username', 'password', command)
