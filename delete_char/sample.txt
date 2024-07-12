@@ -1,0 +1,6 @@
+﻿Ethernet ID:  XX:XX:XX:XX:XX:XX
+or
+AirPort ID:   XX:XX:XX:XX:XX:XX
+where each X is a hexadecimal digit (0 to 9 or A to F).
+The MAC address is listed under the Ethernet or AirPort tab.
+The XX:XX:XX:XX:XX:XX part from the above is the MAC address.
