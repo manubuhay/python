@@ -6,6 +6,8 @@ OS_module/top_dir
 OS_module/top_dir/*
 .idea/
 get_sysinfo/system.txt
+delete_char/sample.txt
+delete_char/removed_char.txt
 # C extensions
 *.so
 
