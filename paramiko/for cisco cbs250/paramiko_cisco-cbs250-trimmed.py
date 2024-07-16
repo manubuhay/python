@@ -21,7 +21,7 @@ def connect_to_cbs250(hostname, username, password, command):
         time.sleep(1)
         
         # Sends the yes(Y/y) command when the CLI asks "This command will reset the whole system and disconnect your current session. 
-        # Do you want to continue ? (Y/N)[N]" comment these 2 lines if you are rebooting or copying running config to startup config
+        # Do you want to continue ? (Y/N)[N]" comment these 2 lines if you are NOT rebooting or copying running config to startup config
         channel.send("y\n")
         time.sleep(1)
             
