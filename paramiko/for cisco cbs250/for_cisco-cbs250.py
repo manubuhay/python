@@ -20,6 +20,7 @@ def connect_to_cbs250(hostname, username, password, command):
         if '#' in output or '>' in output:
             # Send the 'enable' command to enter privileged mode, 
             # But when using the user "admin" in ssh, initial login brings you into privileged mode by default, skipping user exec mode
+            # These 2 lines can be commented out, unnecessary because we are already in Privileged Exec mode
             channel.send("enable\n")
             time.sleep(1)
 
